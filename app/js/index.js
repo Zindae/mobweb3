@@ -2,8 +2,8 @@ var input  = PUBNUB.$("message");
 var send   = PUBNUB.$("send");
 var output = PUBNUB.$("output");
 var pubnub = PUBNUB({
-  publish_key   : "pub-c-140e6d65-1f00-49fd-9c55-2c6df9d26236"
-, subscribe_key : "sub-c-1ff30074-116b-11e6-996b-0619f8945a4f"
+  publish_key   : "pub-c-60fc3e1b-22a6-42b0-86c7-ea2e89337753"
+, subscribe_key : "sub-c-792334ce-11d0-11e6-b406-02ee2ddab7fe"
 });
 
 pubnub.subscribe({ channel : "my_channel", message : receiver });
