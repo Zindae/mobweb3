@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html >
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>A Pen by  PubNub</title>
-    
-    
-    
-    
-    
-    
-    
-    
-  </head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <title>Geochat</title>
 
-  <body>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+	<link rel="stylesheet" href="css/style.css">
+</head>
 
-    <input id="message">
-<button id="send">Send</button>
-<div id="output"></div>
-    <script src='https://cdn.pubnub.com/pubnub-dev.js'></script>
+<body>
+<header>
+	<div class="headerinfo">
+		Geochat
+		<i id="avatar" class="face12"></i>
+	</div>
+	
+	<div class="power">
+		Powered by Thomas & Hjalmar
+	</div>
+</header>
 
-        <script src="js/index.js"></script>
+<section id="main" role="main">
+	<div id="chat">
+		<div class="presencediv">
+			<p id="presence"></p>
+		</div>
+		<input type="text" id="input" placeholder="Type your message..."> 
+		<button id="button">Send</button>
+	</div>
+	<div id="output"></div>
+</section>
 
-    
-    
-    
-  </body>
+<script src='http://cdn.pubnub.com/pubnub-3.7.13.min.js'></script>
+<script src="js/index.js"></script>    
+</body>
 </html>

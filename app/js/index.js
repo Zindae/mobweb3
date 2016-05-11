@@ -1,19 +1,49 @@
-var input  = PUBNUB.$("message");
-var send   = PUBNUB.$("send");
-var output = PUBNUB.$("output");
-var pubnub = PUBNUB({
-  publish_key   : "pub-c-60fc3e1b-22a6-42b0-86c7-ea2e89337753"
-, subscribe_key : "sub-c-792334ce-11d0-11e6-b406-02ee2ddab7fe"
-});
+(function() {
 
-pubnub.subscribe({ channel : "my_channel", message : receiver });
+  var output = document.querySelector('#output'),
+    input = document.querySelector('#input'),
+    button = document.querySelector('#button'),
+    avatar = document.querySelector('#avatar'),
+    presence = document.querySelector('#presence');
+  var channel = 'mchat';
 
-function receiver(message) {
-  output.innerHTML += "<br>" + message;
-}
+  // Assign a random avatar in random color
+  avatar.className = 'face-' + ((Math.random() * 13 + 1) >>> 0) + ' color-' + ((Math.random() * 10 + 1) >>> 0);
 
-PUBNUB.bind( "mousedown", send, function() {
-  var message = input.value;
-  input.value = "";
-  pubnub.publish({ channel: "my_channel", message : message });
-});
+  var p = PUBNUB.init({
+    subscribe_key: 'sub-c-792334ce-11d0-11e6-b406-02ee2ddab7fe',
+    publish_key: 'pub-c-60fc3e1b-22a6-42b0-86c7-ea2e89337753'
+  });
+
+  p.subscribe({
+    channel: channel,
+    callback: function(m) {
+      output.innerHTML = '<p><i class="' + m.avatar + '"></i><span>' + m.text.replace(/[<>]/ig, '') + '</span></p>' + output.innerHTML;
+    },
+    presence: function(m) {
+      if (m.occupancy > 1) {
+        presence.textContent = m.occupancy + ' people online';
+      } else {
+        presence.textContent = 'Nobody else is online';
+      }
+    }
+  });
+
+  p.bind('keyup', input, function(e) {
+    (e.keyCode || e.charCode) === 13 && publish()
+  });
+
+  p.bind('click', button, publish);
+
+  function publish() {
+    p.publish({
+      channel: channel,
+      message: {
+        avatar: avatar.className,
+        text: input.value
+      },
+      x: (input.value = '')
+    });
+  }
+
+})();
