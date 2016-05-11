@@ -1,0 +1,28 @@
+{
+  "name": "mobweb3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular-animate": "^1.5.5",
+    "angular": "^1.5.5",
+    "angular-aria": "^1.5.5",
+    "angular-material": "^1.0.7",
+    "angular-messages": "^1.5.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server app/ -a 0.0.0.0 -p 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zindae/mobweb3.git"
+  },
+  "author": "thomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zindae/mobweb3/issues"
+  },
+  "homepage": "https://github.com/Zindae/mobweb3#readme"
+}

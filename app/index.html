@@ -8,9 +8,18 @@
 
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 	<link rel="stylesheet" href="css/style.css">
-</head>
+	
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+	<script src='http://cdn.pubnub.com/pubnub-3.7.13.min.js'></script>
+	<script src="http://pubnub.github.io/angular-js/scripts/pubnub-angular.js"></script>
+	<script src="js/services/geoService.js"></script>
+	<script src="js/controllers/msgCtrl.js"></script>    
+	<script src="js/controllers/compassCtrl.js"></script>   
+	</head>
 
-<body>
+<body ng-app="myApp" ng-controller="compassCtrl">
 <header>
 	<div class="headerinfo">
 		Geochat
@@ -22,7 +31,7 @@
 	</div>
 </header>
 
-<section id="main" role="main">
+<section ng-controller="msgCtrl" id="main" role="main">
 	<div id="chat">
 		<div class="presencediv">
 			<p id="presence"></p>
@@ -30,10 +39,25 @@
 		<input type="text" id="input" placeholder="Type your message..."> 
 		<button id="button">Send</button>
 	</div>
+	<button id="north" ng-click="setChannel($event) && changeChannel()">north</button>
+	<button id="south" ng-click="setChannel($event) && changeChannel()">south</button>
+	<button id="west" ng-click="setChannel($event) && changeChannel()">west</button>
+	<button id="east" ng-click="setChannel($event) && changeChannel()">east</button>
 	<div id="output"></div>
 </section>
 
-<script src='http://cdn.pubnub.com/pubnub-3.7.13.min.js'></script>
-<script src="js/index.js"></script>    
+ 
+
+<!-- MAP API -->
+<!-- <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyA_RYIP1IIvmoq9emDSKOpjrZcrxUUeRYU"></script> -->
+
+<!-- COMPASS 3D -->
+<!-- https://github.com/richtr/Marine-Compass/tree/15fd0a369faa9119f0f8133b2ceec74942be7bf1/scripts -->
+
 </body>
+
+<!--   <script src="node_modules/angular-animate/angular-animate.js"></script>
+  <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.js"></script>
+  <script src="node_modules/angular-material/angular-material.js"></script> -->
 </html>
