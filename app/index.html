@@ -9,14 +9,17 @@
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 	<link rel="stylesheet" href="css/style.css">
 	
-	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
 	<script src='http://cdn.pubnub.com/pubnub-3.7.13.min.js'></script>
 	<script src="http://pubnub.github.io/angular-js/scripts/pubnub-angular.js"></script>
+	<script src="http://pubnub.github.io/angular-js/scripts/app.js"></script>
+	<script src="http://pubnub.github.io/angular-js/scripts/controllers/main.js"></script>
 	<script src="js/services/geoService.js"></script>
 	<script src="js/controllers/msgCtrl.js"></script>    
-	<script src="js/controllers/compassCtrl.js"></script>   
+	<script src="js/controllers/compassCtrl.js"></script> 
+	<script src="js/cordovaDeviceOrientationModule.min.js"></script>	
 	</head>
 
 <body ng-app="myApp" ng-controller="compassCtrl">
@@ -31,20 +34,45 @@
 	</div>
 </header>
 
-<section ng-controller="msgCtrl" id="main" role="main">
+<section id="main" role="main">
 	<div id="chat">
 		<div class="presencediv">
 			<p id="presence"></p>
+
 		</div>
-		<input type="text" id="input" placeholder="Type your message..."> 
-		<button id="button">Send</button>
+		<input type="text" ng-model="newMessage" id="input" placeholder="Type your message..."> 
+		<button id="button" ng-click="publish()">Send</button>
+		<div class="data">
+			{{orientation | number : 1}}
+			{{test}}
+		</div>
+	<div class="output">
+	<!-- {{output}} -->
+<!-- 	<ul>
+		<li id="list" ng-repeat="y in output">
+			<p><i class=' + y.avatar + '></i><span>{{y.text}}</span></p>
+		</li>
+	</ul> -->
+	<!-- <div ng-repeat="y in output">{{y}}</div> -->
+	<ul>
+		<li id="output">
+		</li>
+		<li id="listHistory" ng-repeat="x in history">
+			<!-- <i class=' + x.avatar + '></i><span>{{x.text}}</span> -->
+			{{output}}
+			{{x.text}}
+		</li>
+	</ul>
 	</div>
-	<button id="north" ng-click="setChannel($event) && changeChannel()">north</button>
-	<button id="south" ng-click="setChannel($event) && changeChannel()">south</button>
-	<button id="west" ng-click="setChannel($event) && changeChannel()">west</button>
-	<button id="east" ng-click="setChannel($event) && changeChannel()">east</button>
-	<div id="output"></div>
+</div>
+<!-- 	<button id="sub" ng-click="subscribe()">subscribe</button>
+	<button id="publish" ng-click="publish()">publish</button> -->
+<!-- 	<button id="west" ng-click="setChannel($event)">west</button>
+	<button id="east" ng-click="setChannel($event)">east</button>
+	<button id="east" ng-click="changeChannel()">check</button> -->
+
 </section>
+
 
  
 

@@ -1,7 +1,20 @@
-myApp.factory('geoService', function () {
+myApp.factory('geoService', function ($rootScope) {
 	
-	this.channel = 'north';
-	console.log(this.channel);
+	this.channel = '';
+	
+	if (this.channel === '') {
+		this.channel = 'north';
+	}
+	
+	this.channelSwitch = function (or) {
+		this.channel = or;
+		$rootScope.$broadcast('channelSwitch', or);
+		return this.channel;
+	}
+	
+	this.getChannel = function() {
+		return this.channel;
+	}
 	
 	return this;
 });
